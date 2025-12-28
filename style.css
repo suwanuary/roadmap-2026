@@ -28,14 +28,14 @@
     --category-marriage: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
     --category-academic: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
     --category-work: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-    --category-study: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    --category-hobby: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
     --category-selfdev: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
     
     /* Category Text Colors */
     --cat-marriage-text: #9d174d;
     --cat-academic-text: #1e40af;
     --cat-work-text: #065f46;
-    --cat-study-text: #92400e;
+    --cat-hobby-text: #92400e;
     --cat-selfdev-text: #5b21b6;
 }
 
@@ -541,7 +541,7 @@ body {
 .task-card.marriage { background: var(--category-marriage); color: var(--cat-marriage-text); }
 .task-card.academic { background: var(--category-academic); color: var(--cat-academic-text); }
 .task-card.work { background: var(--category-work); color: var(--cat-work-text); }
-.task-card.study { background: var(--category-study); color: var(--cat-study-text); }
+.task-card.hobby { background: var(--category-hobby); color: var(--cat-hobby-text); }
 .task-card.selfdev { background: var(--category-selfdev); color: var(--cat-selfdev-text); }
 
 /* === Add Task Button === */
@@ -639,7 +639,7 @@ body {
 .mobile-task-card .task-emoji.marriage { background: var(--category-marriage); }
 .mobile-task-card .task-emoji.academic { background: var(--category-academic); }
 .mobile-task-card .task-emoji.work { background: var(--category-work); }
-.mobile-task-card .task-emoji.study { background: var(--category-study); }
+.mobile-task-card .task-emoji.hobby { background: var(--category-hobby); }
 .mobile-task-card .task-emoji.selfdev { background: var(--category-selfdev); }
 
 .mobile-task-card .task-info { flex: 1; min-width: 0; }
@@ -668,7 +668,7 @@ body {
 .mobile-task-card .task-meta .category-badge.marriage { background: var(--category-marriage); color: var(--cat-marriage-text); }
 .mobile-task-card .task-meta .category-badge.academic { background: var(--category-academic); color: var(--cat-academic-text); }
 .mobile-task-card .task-meta .category-badge.work { background: var(--category-work); color: var(--cat-work-text); }
-.mobile-task-card .task-meta .category-badge.study { background: var(--category-study); color: var(--cat-study-text); }
+.mobile-task-card .task-meta .category-badge.hobby { background: var(--category-hobby); color: var(--cat-hobby-text); }
 .mobile-task-card .task-meta .category-badge.selfdev { background: var(--category-selfdev); color: var(--cat-selfdev-text); }
 
 .mobile-task-card .task-date {
@@ -889,7 +889,7 @@ body {
 .category-tag.marriage { background: var(--category-marriage); color: var(--cat-marriage-text); }
 .category-tag.academic { background: var(--category-academic); color: var(--cat-academic-text); }
 .category-tag.work { background: var(--category-work); color: var(--cat-work-text); }
-.category-tag.study { background: var(--category-study); color: var(--cat-study-text); }
+.category-tag.hobby { background: var(--category-hobby); color: var(--cat-hobby-text); }
 .category-tag.selfdev { background: var(--category-selfdev); color: var(--cat-selfdev-text); }
 
 .category-tag .remove-cat {
