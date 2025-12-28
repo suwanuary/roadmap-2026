@@ -39,7 +39,7 @@ const defaultCategories = [
     { id: 'marriage', name: '결혼 준비', desc: 'Wedding', color: 'marriage', icon: '💒' },
     { id: 'academic', name: '학업', desc: 'Academic', color: 'academic', icon: '📚' },
     { id: 'work', name: '회사', desc: 'Work', color: 'work', icon: '💼' },
-    { id: 'study', name: '공부', desc: 'Study', color: 'study', icon: '📝' },
+    { id: 'hobby', name: '취미', desc: 'Hobby', color: 'hobby', icon: '🎨' },
     { id: 'selfdev', name: '자기계발', desc: 'Self-Dev', color: 'selfdev', icon: '🌱' }
 ];
 
