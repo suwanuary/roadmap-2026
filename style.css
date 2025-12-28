@@ -440,7 +440,7 @@ body {
 .category-label.marriage { border-left: 3px solid #ec4899; }
 .category-label.academic { border-left: 3px solid #3b82f6; }
 .category-label.work { border-left: 3px solid #10b981; }
-.category-label.study { border-left: 3px solid #f59e0b; }
+.category-label.hobby { border-left: 3px solid #f59e0b; }
 .category-label.selfdev { border-left: 3px solid #8b5cf6; }
 
 /* === Month Cells === */
