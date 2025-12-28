@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 연간 로드맵 플래너</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">데이터 불러오는 중...</div>
+    </div>
+
+    <!-- Sync Status -->
+    <div class="sync-status" id="syncStatus">
+        <div class="sync-dot"></div>
+        <span class="sync-text">저장 중...</span>
+    </div>
+
+    <div class="app-container">
+        <div class="header">
+            <div class="header-left">
+                <h1>📅 2026 로드맵</h1>
+                <div class="lock-badge" id="lockBadge">🔒 읽기 전용</div>
+                <div class="theme-toggle">
+                    <button class="theme-btn active" id="darkBtn" onclick="setTheme('dark')">🌙</button>
+                    <button class="theme-btn" id="lightBtn" onclick="setTheme('light')">☀️</button>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" id="adminBtn" onclick="promptPassword()">🔐 관리자</button>
+                <button class="btn btn-secondary" id="logoutBtn" onclick="logout()" style="display:none;">🔓 로그아웃</button>
+                <button class="btn btn-secondary" id="categoryBtn" onclick="openCategoryModal()" style="display:none;">📁 카테고리</button>
+                <button class="btn btn-primary" onclick="exportData()">💾 백업</button>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-icon pink">📋</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="totalTasks">0</div>
+                    <div class="stat-label">일정</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon blue">📁</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="totalCategories">0</div>
+                    <div class="stat-label">카테고리</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon green">📆</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="currentMonth">-</div>
+                    <div class="stat-label">현재</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Toggle (Mobile) -->
+        <div class="view-toggle">
+            <button class="view-btn active" onclick="setView('list')" id="listViewBtn">📋 리스트</button>
+            <button class="view-btn" onclick="setView('grid')" id="gridViewBtn">📊 그리드</button>
+        </div>
+
+        <!-- Category Filter (Mobile) -->
+        <div class="category-filter" id="categoryFilter"></div>
+
+        <!-- Desktop Grid View -->
+        <div class="roadmap-container" id="roadmapContainer">
+            <div class="roadmap-grid" id="roadmapGrid"></div>
+        </div>
+
+        <!-- Mobile List View -->
+        <div class="mobile-view active" id="mobileView"></div>
+
+        <!-- FAB -->
+        <button class="fab" onclick="openQuickAddModal()" style="display:none;">+</button>
+    </div>
+
+    <!-- Task Modal (Add/Edit) -->
+    <div class="modal-overlay" id="taskModal">
+        <div class="modal">
+            <h2 id="taskModalTitle">✨ 새 일정</h2>
+            <form id="taskForm" onsubmit="saveTask(event)">
+                <div class="form-group">
+                    <label>제목</label>
+                    <input type="text" id="taskTitle" placeholder="일정을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label>부제목</label>
+                    <input type="text" id="taskSubtitle" placeholder="추가 설명 (선택)">
+                </div>
+                <div class="form-group">
+                    <label>카테고리</label>
+                    <select id="taskCategorySelect"></select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>시작일</label>
+                        <input type="date" id="taskStartDate">
+                    </div>
+                    <div class="form-group">
+                        <label>종료일</label>
+                        <input type="date" id="taskEndDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>아이콘</label>
+                    <div class="emoji-picker" id="emojiPicker"></div>
+                </div>
+                <input type="hidden" id="taskId">
+                <input type="hidden" id="taskMonth">
+                <input type="hidden" id="selectedEmoji" value="📌">
+                
+                <div class="modal-actions" id="addActions">
+                    <button type="button" class="btn btn-secondary" onclick="closeTaskModal()">취소</button>
+                    <button type="submit" class="btn btn-primary">추가</button>
+                </div>
+                <div class="modal-actions-edit" id="editActions" style="display:none;">
+                    <button type="button" class="btn btn-secondary" onclick="closeTaskModal()">취소</button>
+                    <button type="submit" class="btn btn-primary">저장</button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteCurrentTask()">🗑 삭제</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Category Modal -->
+    <div class="modal-overlay" id="categoryModal">
+        <div class="modal">
+            <h2>📁 카테고리</h2>
+            <div class="category-list" id="categoryList"></div>
+            <form id="categoryForm" onsubmit="addCategory(event)">
+                <div class="form-group">
+                    <label>이름</label>
+                    <input type="text" id="categoryName" placeholder="카테고리 이름">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>설명</label>
+                        <input type="text" id="categoryDesc" placeholder="설명">
+                    </div>
+                    <div class="form-group">
+                        <label>아이콘</label>
+                        <input type="text" id="categoryIcon" placeholder="📁" maxlength="2">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>색상</label>
+                    <select id="categoryColor">
+                        <option value="marriage">💕 핑크</option>
+                        <option value="academic">💙 블루</option>
+                        <option value="work">💚 그린</option>
+                        <option value="study">💛 옐로우</option>
+                        <option value="selfdev">💜 퍼플</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeCategoryModal()">닫기</button>
+                    <button type="submit" class="btn btn-primary">추가</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    
+    <!-- App Script -->
+    <script src="app.js"></script>
+</body>
+</html>
