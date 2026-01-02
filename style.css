@@ -30,6 +30,8 @@
     --category-work: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
     --category-hobby: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
     --category-selfdev: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+    --category-beauty: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+    --category-instagram: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
     
     /* Category Text Colors */
     --cat-marriage-text: #9d174d;
@@ -37,6 +39,8 @@
     --cat-work-text: #065f46;
     --cat-hobby-text: #92400e;
     --cat-selfdev-text: #5b21b6;
+    --cat-beauty-text: #be185d;
+    --cat-instagram-text: #374151;
 }
 
 /* Light Mode */
@@ -442,6 +446,8 @@ body {
 .category-label.work { border-left: 3px solid #10b981; }
 .category-label.hobby { border-left: 3px solid #f59e0b; }
 .category-label.selfdev { border-left: 3px solid #8b5cf6; }
+.category-label.beauty { border-left: 3px solid #ec4899; }
+.category-label.instagram { border-left: 3px solid #6b7280; }
 
 /* === Month Cells === */
 .month-cell {
@@ -543,6 +549,8 @@ body {
 .task-card.work { background: var(--category-work); color: var(--cat-work-text); }
 .task-card.hobby { background: var(--category-hobby); color: var(--cat-hobby-text); }
 .task-card.selfdev { background: var(--category-selfdev); color: var(--cat-selfdev-text); }
+.task-card.beauty { background: var(--category-beauty); color: var(--cat-beauty-text); }
+.task-card.instagram { background: var(--category-instagram); color: var(--cat-instagram-text); }
 
 /* === Add Task Button === */
 .add-task-btn {
@@ -670,6 +678,8 @@ body {
 .mobile-task-card .task-meta .category-badge.work { background: var(--category-work); color: var(--cat-work-text); }
 .mobile-task-card .task-meta .category-badge.hobby { background: var(--category-hobby); color: var(--cat-hobby-text); }
 .mobile-task-card .task-meta .category-badge.selfdev { background: var(--category-selfdev); color: var(--cat-selfdev-text); }
+.mobile-task-card .task-meta .category-badge.beauty { background: var(--category-beauty); color: var(--cat-beauty-text); }
+.mobile-task-card .task-meta .category-badge.instagram { background: var(--category-instagram); color: var(--cat-instagram-text); }
 
 .mobile-task-card .task-date {
     font-family: 'IBM Plex Mono', monospace;
@@ -891,6 +901,8 @@ body {
 .category-tag.work { background: var(--category-work); color: var(--cat-work-text); }
 .category-tag.hobby { background: var(--category-hobby); color: var(--cat-hobby-text); }
 .category-tag.selfdev { background: var(--category-selfdev); color: var(--cat-selfdev-text); }
+.category-tag.beauty { background: var(--category-beauty); color: var(--cat-beauty-text); }
+.category-tag.instagram { background: var(--category-instagram); color: var(--cat-instagram-text); }
 
 .category-tag .remove-cat {
     background: rgba(0,0,0,0.15);

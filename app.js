@@ -36,9 +36,9 @@ let editingTaskId = null;
 
 // 기본 카테고리
 const defaultCategories = [
-    { id: 'marriage', name: '결혼 준비', desc: 'Wedding', color: 'marriage', icon: '💒' },
     { id: 'academic', name: '학업', desc: 'Academic', color: 'academic', icon: '📚' },
-    { id: 'work', name: '회사', desc: 'Work', color: 'work', icon: '💼' },
+    { id: 'beauty', name: '뷰티', desc: 'Beauty', color: 'beauty', icon: '🎀' },
+    { id: 'instagram', name: '미니밥솥', desc: 'Instagram', color: 'instagram', icon: '🎬' },
     { id: 'hobby', name: '취미', desc: 'Hobby', color: 'hobby', icon: '🎨' },
     { id: 'selfdev', name: '자기계발', desc: 'Self-Dev', color: 'selfdev', icon: '🌱' }
 ];
