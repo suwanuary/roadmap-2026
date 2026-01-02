@@ -351,7 +351,10 @@ function renderGrid() {
 // ===== 태스크 카드 생성 =====
 function createTaskCard(task) {
     const card = document.createElement('div');
-    card.className = `task-card ${task.category}`;
+    // 카테고리의 color 값을 찾아서 클래스로 사용
+    const cat = categories.find(c => c.id === task.category);
+    const colorClass = cat ? cat.color : task.category;
+    card.className = `task-card ${colorClass}`;
     card.dataset.taskId = task.id;
     
     // 🔐 관리자만 드래그 및 클릭 편집 가능
@@ -447,6 +450,7 @@ function renderMobileView() {
         const list = document.getElementById(`mobileList${monthNum}`);
         monthTasks.forEach(task => {
             const cat = categories.find(c => c.id === task.category);
+            const colorClass = cat ? cat.color : task.category;
             const card = document.createElement('div');
             card.className = 'mobile-task-card';
             
@@ -459,11 +463,11 @@ function renderMobileView() {
             }
 
             card.innerHTML = `
-                <div class="task-emoji ${task.category}">${task.emoji}</div>
+                <div class="task-emoji ${colorClass}">${task.emoji}</div>
                 <div class="task-info">
                     <div class="task-title">${task.title}</div>
                     <div class="task-meta">
-                        <span class="category-badge ${task.category}">${cat?.name || ''}</span>
+                        <span class="category-badge ${colorClass}">${cat?.name || ''}</span>
                         ${task.startDate ? `<span class="task-date">${formatDate(task.startDate, task.endDate)}</span>` : ''}
                     </div>
                 </div>
